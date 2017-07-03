@@ -12,6 +12,7 @@ namespace CodePoster
     {
         static void Main(string[] args)
         {
+
             if (args.Length < 4)
             {
                 Console.WriteLine(@"Usage: CodePoster.exe c:\code\project *.cs c:\input\image.png c:\output\image.png");
@@ -23,7 +24,7 @@ namespace CodePoster
             var fontSize = 18;
             var output = args[3];
             var invert = false;
-            var stretch = false;
+            var stretch = true;
 
 
 
@@ -133,22 +134,39 @@ namespace CodePoster
             }
 
 
-            content = Regex.Replace(content, " \\* ", me => "*");
-            content = Regex.Replace(content, " \\+ ", me => "+");
-            content = Regex.Replace(content, " - ", me => "-");
-            content = Regex.Replace(content, " / ", me => "/");
-            content = Regex.Replace(content, " % ", me => "%");
-            content = Regex.Replace(content, " => ", me => "=>");
-            content = Regex.Replace(content, " = ", me => "=");
-            content = Regex.Replace(content, " < ", me => "<");
-            content = Regex.Replace(content, " > ", me => ">");
-            content = Regex.Replace(content, " <= ", me => "<=");
-            content = Regex.Replace(content, " >= ", me => ">=");
-            content = Regex.Replace(content, " { ", me => "{");
-            content = Regex.Replace(content, " } ", me => "}");
-            content = Regex.Replace(content, "if ", me => "if");
-            content = Regex.Replace(content, "for ", me => "for");
-            content = Regex.Replace(content, " else ", me => "else");
+            content = Regex.Replace(content, "\\s?\\*\\s?", me => "*");
+            content = Regex.Replace(content, "\\s?\\+\\s?", me => "+");
+            content = Regex.Replace(content, "\\s?\\+=\\s?", me => "+=");
+            content = Regex.Replace(content, "\\s?\\-=\\s?", me => "-=");
+            content = Regex.Replace(content, "\\s?-\\s?", me => "-");
+            content = Regex.Replace(content, "\\s?/\\s?", me => "/");
+            content = Regex.Replace(content, "\\s?;\\s?", me => ";");
+            content = Regex.Replace(content, "\\s?,\\s?", me => ",");
+            content = Regex.Replace(content, "\\s?:\\s?", me => ":");
+            content = Regex.Replace(content, "\\s?%\\s?", me => "%");
+            content = Regex.Replace(content, "\\s?!=\\s?", me => "!=");
+            content = Regex.Replace(content, "\\s?!==\\s?", me => "!==");
+            content = Regex.Replace(content, "\\s?===\\s?", me => "===");
+            content = Regex.Replace(content, "\\s?>=\\s?", me => ">=");
+            content = Regex.Replace(content, "\\s?=>\\s?", me => "=>");
+            content = Regex.Replace(content, "\\s?=\\s?", me => "=");
+            content = Regex.Replace(content, "\\s?<\\s?", me => "<");
+            content = Regex.Replace(content, "\\s?>\\s?", me => ">");
+            content = Regex.Replace(content, "\\s?&&\\s?", me => "&&");
+            content = Regex.Replace(content, "\\s?\\|\\|\\s?", me => "||");
+            content = Regex.Replace(content, "\\s?\\|\\s?", me => "|");
+            content = Regex.Replace(content, "\\s?&\\s?", me => "&");
+            content = Regex.Replace(content, "\\s?\\?\\s?", me => "?");
+            content = Regex.Replace(content, "\\s?\\)\\s?", me => ")");
+            content = Regex.Replace(content, "\\s?\\(\\s?", me => "(");
+            content = Regex.Replace(content, "\\s?\\^\\s?", me => "^");
+            content = Regex.Replace(content, "\\s?{\\s?", me => "{");
+            content = Regex.Replace(content, "\\s?}\\s?", me => "}");
+            content = Regex.Replace(content, "\\s?if\\s?", me => "if");
+            content = Regex.Replace(content, "\\s?case\\s?", me => "case");
+            content = Regex.Replace(content, "\\s?for\\s?", me => "for");
+            content = Regex.Replace(content, "\\s?while\\s?", me => "while");
+            content = Regex.Replace(content, "\\s?return", me => "return");
             return content;
         }
 
